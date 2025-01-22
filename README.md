@@ -5,35 +5,39 @@ Realtime Elo Ranker est une application web permettant de simuler des matchs ent
 ## Conteneurs Métiers
 
 `apps/realtime-elo-ranker-server` : Serveur de l'application (à implémenter)
-  - Sera basé sur NestJS
-  - Gèrera le calcul des résultat de matchs et le classement des joueurs
-  - Exposera l'API Web pour fournir les fonctionnalités métiers :
-    - Calcul des matchs (cf: [Classement Elo](#classement-elo))
-    - Récupération du classement
-    - Mise à jour du classement en temps réel via des évènements
-    - Création de nouveaux joueurs
+
+- Sera basé sur NestJS
+- Gèrera le calcul des résultat de matchs et le classement des joueurs
+- Exposera l'API Web pour fournir les fonctionnalités métiers :
+  - Calcul des matchs (cf: [Classement Elo](#classement-elo))
+  - Récupération du classement
+  - Mise à jour du classement en temps réel via des évènements
+  - Création de nouveaux joueurs
 
 `apps/realtime-elo-ranker-simulator` : Simulateur de matchs (à implémenter - bonus)
-  - Simulera des matchs entre des joueurs
-  - Enverra les résultats des matchs au serveur
-  - Vous pouvez utiliser un simple script NodeJS pour simuler les matchs
+
+- Simulera des matchs entre des joueurs
+- Enverra les résultats des matchs au serveur
+- Vous pouvez utiliser un simple script NodeJS pour simuler les matchs
 
 `apps/realtime-elo-ranker-client` : Client de l'application
-  - Basé sur NextJS
-  - Sert une IHM pour :
-    - Saisir les résultats des matchs
-      - ID du joueur 1
-      - ID du joueur 2
-      - Résultat du match
-    - Afficher le classement des joueurs
-    - Créer de nouveaux joueurs
+
+- Basé sur NextJS
+- Sert une IHM pour :
+  - Saisir les résultats des matchs
+    - ID du joueur 1
+    - ID du joueur 2
+    - Résultat du match
+  - Afficher le classement des joueurs
+  - Créer de nouveaux joueurs
 
 `libs/ui` : Librairie de composants graphiques
-  - Contiendra les composants graphiques réutilisables pour le client
+
+- Contiendra les composants graphiques réutilisables pour le client
 
 ## Lancer l'application cliente
 
-*Prérequis :*
+_Prérequis :_
 
 Le client repose sur une source CSS exposée par la librairie `libs/ui` (@realtime-elo-ranker/libs/ui). Il est nécessaire de construire la lib pour rendre la source accessible.
 
@@ -54,7 +58,7 @@ pnpm run apps:client:dev
 ## Lancer la doc swagger
 
 ```bash
-pnpm run apps:swagger:start
+pnpm run docs:swagger:start
 ```
 
 Le serveur Swagger sera accessible à l'adresse `http://localhost:3001/api-docs`.
@@ -131,7 +135,7 @@ Les données des joueurs et des matchs devront être stockées en mémoire dans 
 
 - Les joueurs devront être stockés dans une liste ou un tableau avec leur score
 - L'historique des matchs devra être stocké dans une liste ou un tableau.
-- Les 
+- Les
 
 ## Calcul du classement
 
@@ -143,7 +147,7 @@ Le calcul du classement Elo devra être implémenté en suivant les règles math
 
 ## Conseils
 
-*Ces conseils sont donnés à titre indicatif et ne sont pas exhaustifs. Les suivre n'est pas obligatoire mais peut vous aider à construire une application de qualité.*
+_Ces conseils sont donnés à titre indicatif et ne sont pas exhaustifs. Les suivre n'est pas obligatoire mais peut vous aider à construire une application de qualité._
 
 - Utilisez la POO pour modéliser les structures de données.
 - Utilisez la PF (Programmation Fonctionnelle) pour les diverses fonctions de calcul de résultats, les créations d'objets et les .manipulations de données primitives
@@ -170,6 +174,7 @@ Rn = Ro + K * (W - We)
 ```
 
 Avec :
+
 - `Rn` : Nouveau classement du joueur
 - `Ro` : Ancien classement du joueur
 - `K` : Coefficient de pondération (facteur de sensibilité du classement)
@@ -217,6 +222,7 @@ We = 1 / (1 + 10^((Rh - Rl) / 400))
 ```
 
 Avec :
+
 - `Rh` : Classement du joueur le mieux classé
 - `Rl` : Classement du joueur le moins bien classé
 
@@ -249,9 +255,9 @@ WLe ≈ 0.91
 WLe = 1 - WHe
 ```
 
-Remarques : 
+Remarques :
+
 - La probabilité de victoire est arrondie à deux décimales. Plus la différence de classement est grande, plus la probabilité de victoire est proche de 0 ou 1.
 - La formule de calcul de la probabilité de victoire est basée sur la formule de la fonction logistique, qui est couramment utilisée pour modéliser des phénomènes binaires (victoire/défaite, succès/échec, etc.).
 - La constante `400` est un paramètre empirique qui détermine la sensibilité de la probabilité de victoire à la différence de classement. Plus la constante est grande, plus la probabilité de victoire change rapidement avec la différence de classement.
 - Par sa conception, le système Elo est mathématiquement un système transactionnel, c'est-à-dire que la somme des classements des joueurs reste constante après chaque match. Cela signifie que le classement gagné par un joueur est équivalent au classement perdu par son adversaire.
-
