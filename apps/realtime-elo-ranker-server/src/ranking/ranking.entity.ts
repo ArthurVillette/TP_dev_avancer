@@ -13,5 +13,5 @@ export class Ranking {
   rank: number;
 
   @Column()
-  points: number;
+  elo: number;
 }

@@ -30,7 +30,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
-], Ranking.prototype, "points", void 0);
+], Ranking.prototype, "elo", void 0);
 exports.Ranking = Ranking = __decorate([
     (0, typeorm_1.Entity)()
 ], Ranking);
