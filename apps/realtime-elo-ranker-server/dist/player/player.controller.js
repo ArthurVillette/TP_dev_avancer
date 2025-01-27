@@ -22,9 +22,6 @@ let PlayerController = class PlayerController {
     async createPlayer(playerData) {
         return this.playerService.createPlayer(playerData);
     }
-    async getAllPlayers() {
-        return this.playerService.getAllPlayers();
-    }
 };
 exports.PlayerController = PlayerController;
 __decorate([
@@ -34,12 +31,6 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], PlayerController.prototype, "createPlayer", null);
-__decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], PlayerController.prototype, "getAllPlayers", null);
 exports.PlayerController = PlayerController = __decorate([
     (0, common_1.Controller)('api/player'),
     __metadata("design:paramtypes", [player_service_1.PlayerService])

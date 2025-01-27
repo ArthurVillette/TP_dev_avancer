@@ -17,6 +17,6 @@ export class Match {
   @Column()
   score2: number;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column('datetime') // Utilisez 'datetime' au lieu de 'timestamp'
   date: Date;
 }

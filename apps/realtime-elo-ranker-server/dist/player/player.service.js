@@ -25,8 +25,14 @@ let PlayerService = class PlayerService {
         const player = this.playerRepository.create(playerData);
         return this.playerRepository.save(player);
     }
-    async getAllPlayers() {
-        return this.playerRepository.find();
+    async seedPlayers() {
+        const players = [
+            { id: 'Arthur', rank: 1200 },
+            { id: 'burito', rank: 1200 },
+        ];
+        for (const playerData of players) {
+            await this.createPlayer(playerData);
+        }
     }
 };
 exports.PlayerService = PlayerService;

@@ -1,19 +1,15 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Ranking } from '../ranking/ranking.entity';
 
 @Entity()
 export class Player {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  @Column()
-  name: string;
-
-  @Column()
+  @Column({default: 1200 })
   rank: number;
 
-  @Column()
-  matchesPlayed: number;
+  @ManyToOne(() => Ranking, ranking => ranking.players)
+  ranking: Ranking;
 
-  @Column()
-  matchesWon: number;
 }

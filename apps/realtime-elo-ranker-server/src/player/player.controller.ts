@@ -10,9 +10,7 @@ export class PlayerController {
   async createPlayer(@Body() playerData: Partial<Player>): Promise<Player> {
     return this.playerService.createPlayer(playerData);
   }
+  
 
-  @Get()
-  async getAllPlayers(): Promise<Player[]> {
-    return this.playerService.getAllPlayers();
-  }
+  
 }

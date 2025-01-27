@@ -19,9 +19,6 @@ let RankingController = class RankingController {
     async getRanking() {
         return this.rankingService.getRanking();
     }
-    async subscribeToRankingUpdates() {
-        return this.rankingService.subscribeToRankingUpdates();
-    }
 };
 exports.RankingController = RankingController;
 __decorate([
@@ -30,12 +27,6 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], RankingController.prototype, "getRanking", null);
-__decorate([
-    (0, common_1.Get)('events'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], RankingController.prototype, "subscribeToRankingUpdates", null);
 exports.RankingController = RankingController = __decorate([
     (0, common_1.Controller)('api/ranking'),
     __metadata("design:paramtypes", [ranking_service_1.RankingService])

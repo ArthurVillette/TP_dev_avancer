@@ -4,5 +4,4 @@ export declare class RankingService {
     private rankingRepository;
     constructor(rankingRepository: Repository<Ranking>);
     getRanking(): Promise<Ranking[]>;
-    subscribeToRankingUpdates(): Promise<string>;
 }

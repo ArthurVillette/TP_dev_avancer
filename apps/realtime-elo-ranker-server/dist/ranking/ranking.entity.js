@@ -20,17 +20,9 @@ __decorate([
     __metadata("design:type", Number)
 ], Ranking.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => player_entity_1.Player, (player) => player.id),
-    __metadata("design:type", player_entity_1.Player)
-], Ranking.prototype, "player", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Ranking.prototype, "rank", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Ranking.prototype, "elo", void 0);
+    (0, typeorm_1.OneToMany)(() => player_entity_1.Player, player => player.ranking),
+    __metadata("design:type", Array)
+], Ranking.prototype, "players", void 0);
 exports.Ranking = Ranking = __decorate([
     (0, typeorm_1.Entity)()
 ], Ranking);

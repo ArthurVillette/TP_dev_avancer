@@ -11,29 +11,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Player = void 0;
 const typeorm_1 = require("typeorm");
+const ranking_entity_1 = require("../ranking/ranking.entity");
 let Player = class Player {
 };
 exports.Player = Player;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
-    __metadata("design:type", Number)
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
+    __metadata("design:type", String)
 ], Player.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Player.prototype, "name", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ default: 1200 }),
     __metadata("design:type", Number)
 ], Player.prototype, "rank", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Player.prototype, "matchesPlayed", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Player.prototype, "matchesWon", void 0);
+    (0, typeorm_1.ManyToOne)(() => ranking_entity_1.Ranking, ranking => ranking.players),
+    __metadata("design:type", ranking_entity_1.Ranking)
+], Player.prototype, "ranking", void 0);
 exports.Player = Player = __decorate([
     (0, typeorm_1.Entity)()
 ], Player);

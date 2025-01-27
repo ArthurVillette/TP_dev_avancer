@@ -9,9 +9,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const match_module_1 = require("./match/match.module");
-const player_module_1 = require("./player/player.module");
 const ranking_module_1 = require("./ranking/ranking.module");
+const player_module_1 = require("./player/player.module");
+const player_entity_1 = require("./player/player.entity");
+const ranking_entity_1 = require("./ranking/ranking.entity");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -21,12 +22,11 @@ exports.AppModule = AppModule = __decorate([
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'sqlite',
                 database: ':memory:',
-                entities: [__dirname + '/**/*.entity{.ts,.js}'],
+                entities: [player_entity_1.Player, ranking_entity_1.Ranking],
                 synchronize: true,
             }),
-            match_module_1.MatchModule,
-            player_module_1.PlayerModule,
             ranking_module_1.RankingModule,
+            player_module_1.PlayerModule,
         ],
     })
 ], AppModule);

@@ -22,10 +22,7 @@ let RankingService = class RankingService {
         this.rankingRepository = rankingRepository;
     }
     async getRanking() {
-        return this.rankingRepository.find({ relations: ['player'], order: { rank: 'ASC' } });
-    }
-    async subscribeToRankingUpdates() {
-        return 'Subscribed to ranking updates';
+        return this.rankingRepository.find({});
     }
 };
 exports.RankingService = RankingService;

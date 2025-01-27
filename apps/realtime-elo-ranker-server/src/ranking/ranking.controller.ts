@@ -10,9 +10,4 @@ export class RankingController {
   async getRanking(): Promise<Ranking[]> {
     return this.rankingService.getRanking();
   }
-
-  @Get('events')
-  async subscribeToRankingUpdates(): Promise<string> {
-    return this.rankingService.subscribeToRankingUpdates();
-  }
 }

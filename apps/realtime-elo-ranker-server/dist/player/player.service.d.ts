@@ -4,5 +4,5 @@ export declare class PlayerService {
     private playerRepository;
     constructor(playerRepository: Repository<Player>);
     createPlayer(playerData: Partial<Player>): Promise<Player>;
-    getAllPlayers(): Promise<Player[]>;
+    seedPlayers(): Promise<void>;
 }

@@ -11,11 +11,6 @@ export class RankingService {
   ) {}
 
   async getRanking(): Promise<Ranking[]> {
-    return this.rankingRepository.find({ relations: ['player'], order: { rank: 'ASC' } });
-  }
-
-  async subscribeToRankingUpdates(): Promise<string> {
-    // Logique pour l'abonnement aux mises à jour du classement
-    return 'Subscribed to ranking updates';
+    return this.rankingRepository.find({ });
   }
 }

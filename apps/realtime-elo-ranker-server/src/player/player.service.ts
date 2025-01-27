@@ -15,7 +15,18 @@ export class PlayerService {
     return this.playerRepository.save(player);
   }
 
-  async getAllPlayers(): Promise<Player[]> {
-    return this.playerRepository.find();
+  
+
+  async seedPlayers(): Promise<void> {
+    const players = [
+      { id: 'Arthur', rank: 1200 },
+      { id: 'burito', rank: 1200},
+      // Ajoutez d'autres joueurs ici
+    ];
+
+    for (const playerData of players) {
+      await this.createPlayer(playerData);
+    }
   }
+  
 }

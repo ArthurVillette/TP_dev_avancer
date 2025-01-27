@@ -4,5 +4,4 @@ export declare class PlayerController {
     private readonly playerService;
     constructor(playerService: PlayerService);
     createPlayer(playerData: Partial<Player>): Promise<Player>;
-    getAllPlayers(): Promise<Player[]>;
 }

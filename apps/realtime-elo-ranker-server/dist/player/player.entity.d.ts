@@ -1,7 +1,6 @@
+import { Ranking } from '../ranking/ranking.entity';
 export declare class Player {
-    id: number;
-    name: string;
+    id: string;
     rank: number;
-    matchesPlayed: number;
-    matchesWon: number;
+    ranking: Ranking;
 }

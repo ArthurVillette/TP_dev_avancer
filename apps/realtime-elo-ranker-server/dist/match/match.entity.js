@@ -35,7 +35,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Match.prototype, "score2", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' }),
+    (0, typeorm_1.Column)('datetime'),
     __metadata("design:type", Date)
 ], Match.prototype, "date", void 0);
 exports.Match = Match = __decorate([
