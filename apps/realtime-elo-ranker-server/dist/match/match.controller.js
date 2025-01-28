@@ -16,11 +16,11 @@ exports.MatchController = void 0;
 const common_1 = require("@nestjs/common");
 const match_service_1 = require("./match.service");
 let MatchController = class MatchController {
-    constructor(matchService) {
-        this.matchService = matchService;
+    constructor(MatchService) {
+        this.MatchService = MatchService;
     }
-    async createMatch(matchData) {
-        return this.matchService.createMatch(matchData);
+    async playMatch(matchData) {
+        return this.MatchService.matchPlay(matchData.winner, matchData.loser, matchData.draw);
     }
 };
 exports.MatchController = MatchController;
@@ -30,7 +30,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], MatchController.prototype, "createMatch", null);
+], MatchController.prototype, "playMatch", null);
 exports.MatchController = MatchController = __decorate([
     (0, common_1.Controller)('api/match'),
     __metadata("design:paramtypes", [match_service_1.MatchService])

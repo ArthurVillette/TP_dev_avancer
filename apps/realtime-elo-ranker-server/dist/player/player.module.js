@@ -20,6 +20,7 @@ exports.PlayerModule = PlayerModule = __decorate([
         imports: [typeorm_1.TypeOrmModule.forFeature([player_entity_1.Player])],
         providers: [player_service_1.PlayerService],
         controllers: [player_controller_1.PlayerController],
+        exports: [player_service_1.PlayerService],
     })
 ], PlayerModule);
 //# sourceMappingURL=player.module.js.map

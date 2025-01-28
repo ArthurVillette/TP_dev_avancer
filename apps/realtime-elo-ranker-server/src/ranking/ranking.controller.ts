@@ -1,13 +1,13 @@
 import { Controller, Get } from '@nestjs/common';
-import { RankingService } from './ranking.service';
-import { Ranking } from './ranking.entity';
+import { PlayerService } from '../player/player.service';
+import { Player } from '../player/player.entity';
 
 @Controller('api/ranking')
 export class RankingController {
-  constructor(private readonly rankingService: RankingService) {}
+  constructor(private readonly playerService: PlayerService) {}
 
   @Get()
-  async getRanking(): Promise<Ranking[]> {
-    return this.rankingService.getRanking();
+  async getAllPlayers(): Promise<Player[]> {
+    return this.playerService.getAllPlayers();
   }
 }

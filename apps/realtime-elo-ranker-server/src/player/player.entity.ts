@@ -1,5 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Ranking } from '../ranking/ranking.entity';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Player {
@@ -8,8 +7,6 @@ export class Player {
 
   @Column({default: 1200 })
   rank: number;
-
-  @ManyToOne(() => Ranking, ranking => ranking.players)
-  ranking: Ranking;
+;
 
 }

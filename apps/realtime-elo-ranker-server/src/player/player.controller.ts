@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { PlayerService } from './player.service';
 import { Player } from './player.entity';
 
@@ -10,7 +10,4 @@ export class PlayerController {
   async createPlayer(@Body() playerData: Partial<Player>): Promise<Player> {
     return this.playerService.createPlayer(playerData);
   }
-  
-
-  
 }

@@ -1,7 +1,10 @@
 import { MatchService } from './match.service';
-import { Match } from './match.entity';
 export declare class MatchController {
-    private readonly matchService;
-    constructor(matchService: MatchService);
-    createMatch(matchData: Partial<Match>): Promise<Match>;
+    private readonly MatchService;
+    constructor(MatchService: MatchService);
+    playMatch(matchData: {
+        winner: string;
+        loser: string;
+        draw: boolean;
+    }): Promise<void>;
 }

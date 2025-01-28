@@ -1,13 +1,14 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { MatchService } from './match.service';
-import { Match } from './match.entity';
 
 @Controller('api/match')
 export class MatchController {
-  constructor(private readonly matchService: MatchService) {}
+  constructor(private readonly MatchService: MatchService) {}
 
   @Post()
-  async createMatch(@Body() matchData: Partial<Match>): Promise<Match> {
-    return this.matchService.createMatch(matchData);
-  }
+  async playMatch(@Body() matchData: { winner: string, loser: string, draw: boolean }): Promise<void> {
+
+      return this.MatchService.matchPlay(matchData.winner,matchData.loser,matchData.draw) }
+
+    
 }

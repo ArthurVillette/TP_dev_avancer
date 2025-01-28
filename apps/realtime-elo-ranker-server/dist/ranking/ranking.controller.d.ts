@@ -1,7 +1,7 @@
-import { RankingService } from './ranking.service';
-import { Ranking } from './ranking.entity';
+import { PlayerService } from '../player/player.service';
+import { Player } from '../player/player.entity';
 export declare class RankingController {
-    private readonly rankingService;
-    constructor(rankingService: RankingService);
-    getRanking(): Promise<Ranking[]>;
+    private readonly playerService;
+    constructor(playerService: PlayerService);
+    getAllPlayers(): Promise<Player[]>;
 }

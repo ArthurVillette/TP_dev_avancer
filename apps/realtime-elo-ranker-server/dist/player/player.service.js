@@ -21,18 +21,31 @@ let PlayerService = class PlayerService {
     constructor(playerRepository) {
         this.playerRepository = playerRepository;
     }
+    async getAllPlayers() {
+        return this.playerRepository.find();
+    }
     async createPlayer(playerData) {
         const player = this.playerRepository.create(playerData);
         return this.playerRepository.save(player);
     }
     async seedPlayers() {
         const players = [
-            { id: 'Arthur', rank: 1200 },
+            { id: 'Arthur', rank: 1850 },
             { id: 'burito', rank: 1200 },
+            { id: 'Magnus Carlsen', rank: 2850 },
+            { id: 'Hugo', rank: 1000 },
         ];
         for (const playerData of players) {
             await this.createPlayer(playerData);
         }
+    }
+    async updateElo(player, resultat, proba) {
+        if (!player) {
+            throw new Error('Player not found');
+        }
+        const newElo = player.rank + 32 * (resultat - proba);
+        player.rank = newElo;
+        return this.playerRepository.save(player);
     }
 };
 exports.PlayerService = PlayerService;
