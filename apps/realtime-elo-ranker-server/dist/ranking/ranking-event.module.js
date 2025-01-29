@@ -6,18 +6,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RankingModule = void 0;
+exports.RankingEventModule = void 0;
 const common_1 = require("@nestjs/common");
-const ranking_controller_1 = require("./ranking.controller");
-const player_module_1 = require("../player/player.module");
-const ranking_event_module_1 = require("./ranking-event.module");
-let RankingModule = class RankingModule {
+const ranking_event_service_1 = require("./ranking-event.service");
+let RankingEventModule = class RankingEventModule {
 };
-exports.RankingModule = RankingModule;
-exports.RankingModule = RankingModule = __decorate([
+exports.RankingEventModule = RankingEventModule;
+exports.RankingEventModule = RankingEventModule = __decorate([
     (0, common_1.Module)({
-        imports: [player_module_1.PlayerModule, ranking_event_module_1.RankingEventModule],
-        controllers: [ranking_controller_1.RankingController],
+        providers: [ranking_event_service_1.EventEmitterService],
+        exports: [ranking_event_service_1.EventEmitterService],
     })
-], RankingModule);
-//# sourceMappingURL=ranking.module.js.map
+], RankingEventModule);
+//# sourceMappingURL=ranking-event.module.js.map

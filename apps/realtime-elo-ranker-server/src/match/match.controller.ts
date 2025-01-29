@@ -3,12 +3,10 @@ import { MatchService } from './match.service';
 
 @Controller('api/match')
 export class MatchController {
-  constructor(private readonly MatchService: MatchService) {}
+  constructor(private readonly matchService: MatchService) {}
 
   @Post()
   async playMatch(@Body() matchData: { winner: string, loser: string, draw: boolean }): Promise<void> {
-
-      return this.MatchService.matchPlay(matchData.winner,matchData.loser,matchData.draw) }
-
-    
+    return this.matchService.matchPlay(matchData.winner, matchData.loser, matchData.draw);
+  }
 }

@@ -11,6 +11,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const player_module_1 = require("./player/player.module");
 const ranking_module_1 = require("./ranking/ranking.module");
+const match_module_1 = require("./match/match.module");
 const player_entity_1 = require("./player/player.entity");
 let AppModule = class AppModule {
 };
@@ -26,6 +27,7 @@ exports.AppModule = AppModule = __decorate([
             }),
             player_module_1.PlayerModule,
             ranking_module_1.RankingModule,
+            match_module_1.MatchModule,
         ],
     })
 ], AppModule);

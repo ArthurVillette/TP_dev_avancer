@@ -16,11 +16,11 @@ exports.MatchController = void 0;
 const common_1 = require("@nestjs/common");
 const match_service_1 = require("./match.service");
 let MatchController = class MatchController {
-    constructor(MatchService) {
-        this.MatchService = MatchService;
+    constructor(matchService) {
+        this.matchService = matchService;
     }
     async playMatch(matchData) {
-        return this.MatchService.matchPlay(matchData.winner, matchData.loser, matchData.draw);
+        return this.matchService.matchPlay(matchData.winner, matchData.loser, matchData.draw);
     }
 };
 exports.MatchController = MatchController;
