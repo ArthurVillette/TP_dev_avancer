@@ -4,5 +4,6 @@ export declare class EventEmitterService {
     emit(event: string, ...args: any[]): boolean;
     removeListener(event: string, listener: (...args: any[]) => void): void;
     removeAllListeners(event?: string): void;
+    off(event: string, listener: (...args: any[]) => void): void;
     MAJ(...args: any[]): boolean;
 }

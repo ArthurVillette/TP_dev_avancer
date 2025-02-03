@@ -17,13 +17,22 @@ let EventEmitterService = class EventEmitterService {
         this.eventEmitter.on(event, listener);
     }
     emit(event, ...args) {
-        return this.eventEmitter.emit(event, ...args);
+        try {
+            return this.eventEmitter.emit(event, ...args);
+        }
+        catch (error) {
+            console.error(`Error emitting event ${event}:`, error);
+            return false;
+        }
     }
     removeListener(event, listener) {
         this.eventEmitter.removeListener(event, listener);
     }
     removeAllListeners(event) {
         this.eventEmitter.removeAllListeners(event);
+    }
+    off(event, listener) {
+        this.eventEmitter.off(event, listener);
     }
     MAJ(...args) {
         return this.eventEmitter.emit('ranking.update', ...args);

@@ -29,8 +29,13 @@ let PlayerService = class PlayerService {
     async createPlayer(playerData) {
         const player = this.playerRepository.create(playerData);
         const savedPlayer = await this.playerRepository.save(player);
-        this.eventEmitterService.emit('playerCreated', savedPlayer);
-        this.eventEmitterService.MAJ();
+        try {
+            this.eventEmitterService.emit('playerUpdated', savedPlayer);
+            this.eventEmitterService.MAJ(savedPlayer);
+        }
+        catch (error) {
+            console.error('Error emitting event:', error);
+        }
         return savedPlayer;
     }
     async seedPlayers() {
@@ -48,11 +53,16 @@ let PlayerService = class PlayerService {
         if (!player) {
             throw new Error('Player not found');
         }
-        const newElo = player.rank + 32 * (resultat - proba);
+        const newElo = Math.round(player.rank + 32 * (resultat - proba));
         player.rank = newElo;
         const updatedPlayer = await this.playerRepository.save(player);
-        this.eventEmitterService.emit('playerUpdated', updatedPlayer);
-        this.eventEmitterService.MAJ();
+        try {
+            this.eventEmitterService.emit('playerUpdated', updatedPlayer);
+            this.eventEmitterService.MAJ(updatedPlayer);
+        }
+        catch (error) {
+            console.error('Error emitting event:', error);
+        }
         return updatedPlayer;
     }
 };

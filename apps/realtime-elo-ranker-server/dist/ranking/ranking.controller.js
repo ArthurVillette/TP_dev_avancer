@@ -22,10 +22,16 @@ let RankingController = class RankingController {
     async getAllPlayers() {
         return this.playerService.getAllPlayers();
     }
-    events() {
+    Sse() {
         return new rxjs_1.Observable((observer) => {
-            const rankingUpdateListener = (data) => observer.next(data);
+            const rankingUpdateListener = (data) => {
+                console.log(data);
+                observer.next({ message: "", data: { type: "RankingUpdate", player: data } });
+            };
             this.eventEmitterService.on('ranking.update', rankingUpdateListener);
+            return () => {
+                this.eventEmitterService.off('ranking.update', rankingUpdateListener);
+            };
         });
     }
 };
@@ -41,7 +47,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", rxjs_1.Observable)
-], RankingController.prototype, "events", null);
+], RankingController.prototype, "Sse", null);
 exports.RankingController = RankingController = __decorate([
     (0, common_1.Controller)('api/ranking'),
     __metadata("design:paramtypes", [player_service_1.PlayerService,

@@ -17,12 +17,16 @@ export class PlayerService {
   }
 
   async createPlayer(playerData: Partial<Player>): Promise<Player> {
-    const player = this.playerRepository.create(playerData);
-    const savedPlayer = await this.playerRepository.save(player);
-    this.eventEmitterService.emit('playerCreated', savedPlayer);
-    this.eventEmitterService.MAJ(); // Émettre l'événement ranking.update
-    return savedPlayer;
-  }
+      const player = this.playerRepository.create(playerData);
+      const savedPlayer = await this.playerRepository.save(player);
+      try {
+        this.eventEmitterService.emit('playerUpdated', savedPlayer);
+        this.eventEmitterService.MAJ(savedPlayer); // Passer les données du joueur
+      } catch (error) {
+        console.error('Error emitting event:', error);
+      }
+      return savedPlayer;}
+
 
   async seedPlayers(): Promise<void> {
     const players = [
@@ -37,15 +41,19 @@ export class PlayerService {
     }
   }
 
-  async updateElo(player: Player, resultat: number, proba: number): Promise<Player> {
+ async updateElo(player: Player, resultat: number, proba: number): Promise<Player> {
     if (!player) {
       throw new Error('Player not found');
     }
-    const newElo = player.rank + 32 * (resultat - proba);
+    const newElo = Math.round(player.rank + 32 * (resultat - proba));
     player.rank = newElo;
     const updatedPlayer = await this.playerRepository.save(player);
-    this.eventEmitterService.emit('playerUpdated', updatedPlayer);
-    this.eventEmitterService.MAJ(); // Émettre l'événement ranking.update
+    try {
+      this.eventEmitterService.emit('playerUpdated', updatedPlayer);
+      this.eventEmitterService.MAJ(updatedPlayer); // Passer les données du joueur
+    } catch (error) {
+      console.error('Error emitting event:', error);
+    }
     return updatedPlayer;
   }
 }

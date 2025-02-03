@@ -7,5 +7,5 @@ export declare class RankingController {
     private readonly eventEmitterService;
     constructor(playerService: PlayerService, eventEmitterService: EventEmitterService);
     getAllPlayers(): Promise<Player[]>;
-    events(): Observable<any>;
+    Sse(): Observable<any>;
 }

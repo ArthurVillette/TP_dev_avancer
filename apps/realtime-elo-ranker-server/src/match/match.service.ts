@@ -15,20 +15,24 @@ export class MatchService {
   ) {}
 
   async matchPlay(winner: string, loser: string, draw: boolean): Promise<void> {
-    if (draw) {
-
-    } else {
       const playerWinner = await this.playerRepository.findOne({ where: { id: winner } });
       const playerLoser = await this.playerRepository.findOne({ where: { id: loser } });
       if (playerWinner && playerLoser) {
+        
         let Rh = playerWinner.rank;
         let Rl = playerLoser.rank;
         const probaAdversaire1 = 1 / (1 + Math.pow(10, (Rl - Rh) / 400));
         const probaAdversaire2= 1 / (1 + Math.pow(10, (Rh - Rl) / 400));
-        
+        if (draw) {
+        await this.playerService.updateElo(playerWinner, 0.5, probaAdversaire1);
+        await this.playerService.updateElo(playerLoser, 0.5, probaAdversaire2);
+    } 
+    else{
         await this.playerService.updateElo(playerWinner, 1, probaAdversaire1);
         await this.playerService.updateElo(playerLoser, 0, probaAdversaire2);
+    }
+    
       }
     }
   }
-}
+
