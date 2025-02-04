@@ -13,7 +13,10 @@ export class PlayerService {
   ) {}
 
   async getAllPlayers(): Promise<Player[]> {
-    return this.playerRepository.find();
+    const players = await this.playerRepository.find({ order: { rank: 'DESC' } });
+    this.eventEmitterService.MAJ(players); 
+    return players;
+
   }
 
   async createPlayer(playerData: Partial<Player>): Promise<Player> {
